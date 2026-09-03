@@ -4,7 +4,7 @@ import {
   createAdminSession,
   destroyAdminSession,
   isAdminAuthenticated,
-} from "@/server/auth";
+} from "./auth";
 
 export const getAdminSessionFn = createServerFn({ method: "GET" }).handler(async () => {
   return { isAdmin: await isAdminAuthenticated() };

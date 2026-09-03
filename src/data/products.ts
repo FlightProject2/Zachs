@@ -1,4 +1,4 @@
-import type { Product } from "@/types/product";
+import type { Product } from "../types/product";
 
 // Seed data only — consumed by `npm run seed-data` to initialize
 // data/products.json, the live editable store behind the admin panel and

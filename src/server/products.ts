@@ -1,8 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
-import { readProducts, writeProducts } from "@/server/store";
-import { requireAdmin } from "@/server/auth";
-import { getRelatedProducts } from "@/data/product-helpers";
-import type { Product } from "@/types/product";
+import { readProducts, writeProducts } from "./store";
+import { requireAdmin } from "./auth";
+import { getRelatedProducts } from "../data/product-helpers";
+import type { Product } from "../types/product";
 
 export const getProductsFn = createServerFn({ method: "GET" }).handler(async () => {
   return readProducts();

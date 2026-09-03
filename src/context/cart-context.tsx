@@ -7,7 +7,7 @@ import {
   useState,
 } from "react";
 import type { ReactNode } from "react";
-import type { ArtIcon } from "@/types/product";
+import type { ArtIcon } from "../types/product";
 
 export interface CartItem {
   slug: string;

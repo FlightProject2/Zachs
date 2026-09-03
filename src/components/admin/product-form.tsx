@@ -1,7 +1,7 @@
 import { useState } from "react";
 import type { FormEvent } from "react";
-import type { ArtIcon, Product } from "@/types/product";
-import type { Category } from "@/data/categories";
+import type { ArtIcon, Product } from "../../types/product";
+import type { Category } from "../../data/categories";
 
 const ART_ICONS: ArtIcon[] = [
   "monstera",

@@ -1,7 +1,7 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { Leaf, MapPin, PackageCheck, RotateCcw, Truck } from "lucide-react";
-import { JsonLd } from "@/components/json-ld";
-import { SITE_URL } from "@/lib/site";
+import { JsonLd } from "../components/json-ld";
+import { SITE_URL } from "../lib/site";
 
 export const Route = createFileRoute("/delivery-returns")({
   head: () => ({

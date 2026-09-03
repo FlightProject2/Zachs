@@ -1,16 +1,16 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { Droplets, Heart, PawPrint, Sun } from "lucide-react";
-import { getProductBySlugFn } from "@/server/products";
-import { getCategoriesFn } from "@/server/categories";
-import { getCategory } from "@/data/category-helpers";
-import { PlantArt } from "@/components/plant-art";
-import { StarRating } from "@/components/star-rating";
-import { ProductPurchasePanel } from "@/components/product-purchase-panel";
-import { ProductCard } from "@/components/product-card";
-import { SectionHeading } from "@/components/section-heading";
-import { JsonLd } from "@/components/json-ld";
-import { formatPrice } from "@/lib/format";
-import { BUSINESS, SITE_NAME, SITE_URL } from "@/lib/site";
+import { getProductBySlugFn } from "../server/products";
+import { getCategoriesFn } from "../server/categories";
+import { getCategory } from "../data/category-helpers";
+import { PlantArt } from "../components/plant-art";
+import { StarRating } from "../components/star-rating";
+import { ProductPurchasePanel } from "../components/product-purchase-panel";
+import { ProductCard } from "../components/product-card";
+import { SectionHeading } from "../components/section-heading";
+import { JsonLd } from "../components/json-ld";
+import { formatPrice } from "../lib/format";
+import { BUSINESS, SITE_NAME, SITE_URL } from "../lib/site";
 
 export const Route = createFileRoute("/product/$slug")({
   loader: async ({ params }) => {

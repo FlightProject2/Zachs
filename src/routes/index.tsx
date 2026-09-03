@@ -1,15 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Hero } from "@/components/hero";
-import { UspBar } from "@/components/usp-bar";
-import { SectionHeading } from "@/components/section-heading";
-import { ProductCard } from "@/components/product-card";
-import { CategoryCard } from "@/components/category-card";
-import { Newsletter } from "@/components/newsletter";
-import { getBestsellers, getNewArrivals } from "@/data/product-helpers";
-import { getProductsFn } from "@/server/products";
-import { getCategoriesFn } from "@/server/categories";
-import { StarRating } from "@/components/star-rating";
-import { SITE_URL } from "@/lib/site";
+import { Hero } from "../components/hero";
+import { UspBar } from "../components/usp-bar";
+import { SectionHeading } from "../components/section-heading";
+import { ProductCard } from "../components/product-card";
+import { CategoryCard } from "../components/category-card";
+import { Newsletter } from "../components/newsletter";
+import { getBestsellers, getNewArrivals } from "../data/product-helpers";
+import { getProductsFn } from "../server/products";
+import { getCategoriesFn } from "../server/categories";
+import { StarRating } from "../components/star-rating";
+import { SITE_URL } from "../lib/site";
 
 export const Route = createFileRoute("/")({
   loader: async () => {

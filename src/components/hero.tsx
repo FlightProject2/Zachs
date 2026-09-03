@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import { PlantArt } from "@/components/plant-art";
+import { PlantArt } from "./plant-art";
 
 export function Hero() {
   return (

@@ -1,6 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2 } from "lucide-react";
-import { formatPrice } from "@/lib/format";
+import { formatPrice } from "../lib/format";
 
 interface ConfirmationSearch {
   order?: string;

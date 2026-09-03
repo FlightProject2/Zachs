@@ -10,7 +10,7 @@ import {
   Trees,
   Wand2,
 } from "lucide-react";
-import type { ArtIcon } from "@/types/product";
+import type { ArtIcon } from "../types/product";
 
 const ICONS: Record<ArtIcon, typeof Leaf> = {
   monstera: Leaf,

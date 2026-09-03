@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import type { Product } from "@/types/product";
-import { PlantArt } from "@/components/plant-art";
-import { StarRating } from "@/components/star-rating";
-import { formatPrice } from "@/lib/format";
-import { AddToCartButton } from "@/components/add-to-cart-button";
+import type { Product } from "../types/product";
+import { PlantArt } from "./plant-art";
+import { StarRating } from "./star-rating";
+import { formatPrice } from "../lib/format";
+import { AddToCartButton } from "./add-to-cart-button";
 
 const TAG_LABEL: Record<string, string> = {
   bestseller: "Bestseller",

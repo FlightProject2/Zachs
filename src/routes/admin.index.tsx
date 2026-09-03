@@ -1,8 +1,8 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { AlertTriangle, Package, Tags } from "lucide-react";
-import { getProductsFn } from "@/server/products";
-import { getCategoriesFn } from "@/server/categories";
-import { formatPrice } from "@/lib/format";
+import { getProductsFn } from "../server/products";
+import { getCategoriesFn } from "../server/categories";
+import { formatPrice } from "../lib/format";
 
 export const Route = createFileRoute("/admin/")({
   loader: async () => {

@@ -1,5 +1,5 @@
 import { useNavigate } from "@tanstack/react-router";
-import type { Category } from "@/data/categories";
+import type { Category } from "../../data/categories";
 import clsx from "clsx";
 
 const SORT_OPTIONS = [

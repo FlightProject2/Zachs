@@ -2,7 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { Leaf, Lock } from "lucide-react";
-import { loginFn } from "@/server/admin";
+import { loginFn } from "../server/admin";
 
 export const Route = createFileRoute("/admin_/login")({
   head: () => ({

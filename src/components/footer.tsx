@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { AtSign, Mail } from "lucide-react";
-import type { Category } from "@/data/categories";
-import { Newsletter } from "@/components/newsletter";
+import type { Category } from "../data/categories";
+import { Newsletter } from "./newsletter";
 
 export function Footer({ categories }: { categories: Category[] }) {
   return (

@@ -1,8 +1,8 @@
 import { createFileRoute, useRouter } from "@tanstack/react-router";
-import { getCategoriesFn } from "@/server/categories";
-import { createProductFn } from "@/server/products";
-import { ProductForm } from "@/components/admin/product-form";
-import type { Product } from "@/types/product";
+import { getCategoriesFn } from "../server/categories";
+import { createProductFn } from "../server/products";
+import { ProductForm } from "../components/admin/product-form";
+import type { Product } from "../types/product";
 
 export const Route = createFileRoute("/admin/products_/new")({
   loader: () => getCategoriesFn(),

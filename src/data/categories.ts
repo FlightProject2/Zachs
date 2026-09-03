@@ -1,4 +1,4 @@
-import type { ArtIcon, CategorySlug } from "@/types/product";
+import type { ArtIcon, CategorySlug } from "../types/product";
 
 export interface Category {
   slug: CategorySlug;

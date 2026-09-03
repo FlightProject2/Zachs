@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Check, ShoppingBasket } from "lucide-react";
-import { useCart } from "@/context/cart-context";
-import { QuantityStepper } from "@/components/quantity-stepper";
-import type { Product } from "@/types/product";
+import { useCart } from "../context/cart-context";
+import { QuantityStepper } from "./quantity-stepper";
+import type { Product } from "../types/product";
 import clsx from "clsx";
 
 export function ProductPurchasePanel({ product }: { product: Product }) {

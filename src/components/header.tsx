@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, ShoppingBasket, X } from "lucide-react";
-import type { Category } from "@/data/categories";
-import { useCart } from "@/context/cart-context";
+import type { Category } from "../data/categories";
+import { useCart } from "../context/cart-context";
 
 export function Header({ categories }: { categories: Category[] }) {
   const { itemCount, openCart } = useCart();

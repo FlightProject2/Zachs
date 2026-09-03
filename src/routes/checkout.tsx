@@ -2,9 +2,9 @@ import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import type { FormEvent } from "react";
 import { Lock, ShoppingBasket } from "lucide-react";
-import { useCart } from "@/context/cart-context";
-import { PlantArt } from "@/components/plant-art";
-import { formatPrice } from "@/lib/format";
+import { useCart } from "../context/cart-context";
+import { PlantArt } from "../components/plant-art";
+import { formatPrice } from "../lib/format";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({

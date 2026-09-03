@@ -1,9 +1,9 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ShoppingBasket, Trash2 } from "lucide-react";
-import { useCart } from "@/context/cart-context";
-import { PlantArt } from "@/components/plant-art";
-import { QuantityStepper } from "@/components/quantity-stepper";
-import { formatPrice } from "@/lib/format";
+import { useCart } from "../context/cart-context";
+import { PlantArt } from "../components/plant-art";
+import { QuantityStepper } from "../components/quantity-stepper";
+import { formatPrice } from "../lib/format";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({

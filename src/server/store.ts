@@ -12,8 +12,8 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
-import type { Product } from "@/types/product";
-import type { Category } from "@/data/categories";
+import type { Product } from "../types/product";
+import type { Category } from "../data/categories";
 
 const DATA_DIR = resolve(import.meta.dirname, "../../data");
 const PRODUCTS_PATH = resolve(DATA_DIR, "products.json");

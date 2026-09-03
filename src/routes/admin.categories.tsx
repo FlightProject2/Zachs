@@ -1,7 +1,7 @@
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
-import { getCategoriesFn, updateCategoryFn } from "@/server/categories";
-import type { Category } from "@/data/categories";
+import { getCategoriesFn, updateCategoryFn } from "../server/categories";
+import type { Category } from "../data/categories";
 
 export const Route = createFileRoute("/admin/categories")({
   loader: () => getCategoriesFn(),

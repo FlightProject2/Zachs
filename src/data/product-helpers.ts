@@ -1,4 +1,4 @@
-import type { Product } from "@/types/product";
+import type { Product } from "../types/product";
 
 export function getProduct(products: Product[], slug: string) {
   return products.find((p) => p.slug === slug);

@@ -1,8 +1,8 @@
 import { createFileRoute, notFound, useRouter } from "@tanstack/react-router";
-import { getCategoriesFn } from "@/server/categories";
-import { getProductBySlugFn, updateProductFn } from "@/server/products";
-import { ProductForm } from "@/components/admin/product-form";
-import type { Product } from "@/types/product";
+import { getCategoriesFn } from "../server/categories";
+import { getProductBySlugFn, updateProductFn } from "../server/products";
+import { ProductForm } from "../components/admin/product-form";
+import type { Product } from "../types/product";
 
 export const Route = createFileRoute("/admin/products_/$slug")({
   loader: async ({ params }) => {

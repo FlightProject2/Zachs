@@ -4,14 +4,14 @@ import {
   createRootRoute,
   useRouterState,
 } from "@tanstack/react-router";
-import { CartProvider } from "@/context/cart-context";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
-import { CartDrawer } from "@/components/cart-drawer";
-import { NotFound } from "@/components/not-found";
-import { JsonLd } from "@/components/json-ld";
-import { getCategoriesFn } from "@/server/categories";
-import { BUSINESS, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
+import { CartProvider } from "../context/cart-context";
+import { Header } from "../components/header";
+import { Footer } from "../components/footer";
+import { CartDrawer } from "../components/cart-drawer";
+import { NotFound } from "../components/not-found";
+import { JsonLd } from "../components/json-ld";
+import { getCategoriesFn } from "../server/categories";
+import { BUSINESS, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "../lib/site";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({

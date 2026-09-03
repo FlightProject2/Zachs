@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Leaf, Sprout, Truck, Users } from "lucide-react";
-import { PlantArt } from "@/components/plant-art";
-import { SITE_URL } from "@/lib/site";
+import { PlantArt } from "../components/plant-art";
+import { SITE_URL } from "../lib/site";
 
 export const Route = createFileRoute("/about")({
   head: () => ({

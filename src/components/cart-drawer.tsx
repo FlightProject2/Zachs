@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Minus, Plus, ShoppingBasket, X } from "lucide-react";
-import { useCart } from "@/context/cart-context";
-import { PlantArt } from "@/components/plant-art";
-import { formatPrice } from "@/lib/format";
+import { useCart } from "../context/cart-context";
+import { PlantArt } from "./plant-art";
+import { formatPrice } from "../lib/format";
 
 export function CartDrawer() {
   const { isOpen, closeCart, items, itemCount, subtotal, updateQuantity, removeItem } =

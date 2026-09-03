@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Droplets, Sun, Thermometer, Wind } from "lucide-react";
-import { PlantArt } from "@/components/plant-art";
-import { SectionHeading } from "@/components/section-heading";
-import { SITE_URL } from "@/lib/site";
+import { PlantArt } from "../components/plant-art";
+import { SectionHeading } from "../components/section-heading";
+import { SITE_URL } from "../lib/site";
 
 export const Route = createFileRoute("/care-guides")({
   head: () => ({

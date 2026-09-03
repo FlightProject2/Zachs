@@ -1,6 +1,6 @@
 import { Link, Outlet, createFileRoute, redirect, useNavigate, useRouterState } from "@tanstack/react-router";
 import { LayoutDashboard, Leaf, LogOut, Package, Tags } from "lucide-react";
-import { getAdminSessionFn, logoutFn } from "@/server/admin";
+import { getAdminSessionFn, logoutFn } from "../server/admin";
 
 export const Route = createFileRoute("/admin")({
   beforeLoad: async () => {

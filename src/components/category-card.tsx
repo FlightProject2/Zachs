@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import type { Category } from "@/data/categories";
-import { PlantArt } from "@/components/plant-art";
+import type { Category } from "../data/categories";
+import { PlantArt } from "./plant-art";
 
 export function CategoryCard({ category }: { category: Category }) {
   return (

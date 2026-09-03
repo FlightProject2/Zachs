@@ -1,12 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ShopFilters } from "@/components/shop/shop-filters";
-import { ProductCard } from "@/components/product-card";
-import { JsonLd } from "@/components/json-ld";
-import { getProductsFn } from "@/server/products";
-import { getCategoriesFn } from "@/server/categories";
-import { getCategory } from "@/data/category-helpers";
-import type { Product } from "@/types/product";
-import { SITE_URL } from "@/lib/site";
+import { ShopFilters } from "../components/shop/shop-filters";
+import { ProductCard } from "../components/product-card";
+import { JsonLd } from "../components/json-ld";
+import { getProductsFn } from "../server/products";
+import { getCategoriesFn } from "../server/categories";
+import { getCategory } from "../data/category-helpers";
+import type { Product } from "../types/product";
+import { SITE_URL } from "../lib/site";
 
 interface ShopSearch {
   category?: string;

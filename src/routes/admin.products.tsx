@@ -1,9 +1,9 @@
 import { Link, createFileRoute, useRouter } from "@tanstack/react-router";
 import { useState } from "react";
 import { Pencil, Plus, Trash2 } from "lucide-react";
-import { getProductsFn, deleteProductFn } from "@/server/products";
-import { getCategoriesFn } from "@/server/categories";
-import { formatPrice } from "@/lib/format";
+import { getProductsFn, deleteProductFn } from "../server/products";
+import { getCategoriesFn } from "../server/categories";
+import { formatPrice } from "../lib/format";
 
 export const Route = createFileRoute("/admin/products")({
   loader: async () => {

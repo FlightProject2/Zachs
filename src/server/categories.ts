@@ -1,6 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
-import { readCategories, writeCategories } from "@/server/store";
-import { requireAdmin } from "@/server/auth";
+import { readCategories, writeCategories } from "./store";
+import { requireAdmin } from "./auth";
 
 export const getCategoriesFn = createServerFn({ method: "GET" }).handler(async () => {
   return readCategories();
