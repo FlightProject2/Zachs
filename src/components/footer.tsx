@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Leaf, AtSign, Mail } from "lucide-react";
+import { AtSign, Mail } from "lucide-react";
 import { categories } from "@/data/categories";
 import { Newsletter } from "@/components/newsletter";
 
@@ -8,11 +8,14 @@ export function Footer() {
     <footer className="mt-24 bg-brand-950 text-brand-100">
       <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-2">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white">
-              <Leaf size={18} />
-            </span>
-            <span className="font-display text-xl text-white">Zachs</span>
+          <Link to="/" className="flex items-center">
+            <img
+              src="/brand/logo-light.png"
+              alt="Zachs"
+              width={425}
+              height={175}
+              className="h-8 w-auto"
+            />
           </Link>
           <p className="mt-4 max-w-xs text-sm text-brand-200">
             A small nursery in Lurgan, Northern Ireland, growing beautiful,

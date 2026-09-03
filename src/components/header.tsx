@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Leaf, Menu, ShoppingBasket, X } from "lucide-react";
+import { Menu, ShoppingBasket, X } from "lucide-react";
 import { categories } from "@/data/categories";
 import { useCart } from "@/context/cart-context";
 
@@ -29,13 +29,14 @@ export function Header() {
             <Menu size={22} />
           </button>
 
-          <Link to="/" className="flex items-center gap-2">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white">
-              <Leaf size={18} />
-            </span>
-            <span className="font-display text-xl tracking-tight text-brand-950">
-              Zachs
-            </span>
+          <Link to="/" className="flex items-center">
+            <img
+              src="/brand/logo.png"
+              alt="Zachs"
+              width={425}
+              height={175}
+              className="h-9 w-auto"
+            />
           </Link>
 
           <nav className="hidden flex-1 items-center justify-center gap-6 lg:flex">
