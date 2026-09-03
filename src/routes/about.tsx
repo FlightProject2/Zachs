@@ -1,17 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Leaf, Sprout, Truck, Users } from "lucide-react";
 import { PlantArt } from "@/components/plant-art";
+import { SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About Us | Zachs" },
+      { title: "About Zachs | Plant Nursery in Lurgan, Northern Ireland" },
       {
         name: "description",
         content:
-          "Learn about Zachs, a UK plant nursery growing healthy houseplants and outdoor greenery for over a decade.",
+          "Zachs is a family-run plant nursery based in Lurgan, Co. Armagh, growing healthy houseplants and outdoor greenery for customers across Northern Ireland.",
       },
     ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/about` }],
   }),
   component: AboutPage,
 });
@@ -20,7 +22,7 @@ const VALUES = [
   {
     icon: Sprout,
     title: "Grown, not just sold",
-    body: "Every plant starts life in our Kent glasshouses, so what you receive has been nurtured, not just shipped in from a warehouse.",
+    body: "Every plant starts life in our glasshouses just outside Lurgan, so what you receive has been nurtured, not just shipped in from a warehouse.",
   },
   {
     icon: Leaf,
@@ -49,14 +51,15 @@ function AboutPage() {
               Our story
             </p>
             <h1 className="font-display text-4xl leading-tight text-brand-950">
-              A small nursery with big love for plants.
+              A Lurgan nursery with big love for plants.
             </h1>
             <p className="mt-5 text-[15px] leading-relaxed text-foreground/85">
-              Zachs began as a single glasshouse in Kent, started by a family who
-              simply couldn&apos;t stop propagating cuttings for friends and
-              neighbours. Today we&apos;re still a small, independent nursery
-              &mdash; just with a few more glasshouses, and a website that lets us
-              share what we grow with plant lovers across the whole country.
+              Zachs began as a single glasshouse just outside Lurgan, Co. Armagh,
+              started by a family who simply couldn&apos;t stop propagating
+              cuttings for friends and neighbours. Today we&apos;re still a
+              small, independent nursery &mdash; just with a few more
+              glasshouses, and a website that lets us share what we grow with
+              plant lovers right across Northern Ireland.
             </p>
             <p className="mt-4 text-[15px] leading-relaxed text-foreground/85">
               We believe healthy plants start with patient growing, not

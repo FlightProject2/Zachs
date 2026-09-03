@@ -17,7 +17,7 @@ export function Header() {
     <>
       <header className="sticky top-0 z-40 border-b border-line bg-background/90 backdrop-blur">
         <div className="border-b border-line bg-brand-900 py-2 text-center text-xs text-brand-50">
-          Free UK delivery on orders over £45 &middot; Grown with care in our Kent nursery
+          Free NI delivery on orders over £45 &middot; Grown with care in our Lurgan nursery
         </div>
         <div className="container-page flex h-16 items-center justify-between gap-4">
           <button

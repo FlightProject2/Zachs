@@ -15,6 +15,7 @@ import { Route as CareGuidesRouteImport } from './routes/care-guides'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as DeliveryReturnsRouteImport } from './routes/delivery-returns'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as CheckoutConfirmationRouteImport } from './routes/checkout_.confirmation'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
@@ -49,6 +50,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DeliveryReturnsRoute = DeliveryReturnsRouteImport.update({
+  id: '/delivery-returns',
+  path: '/delivery-returns',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
   path: '/shop',
@@ -72,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/delivery-returns': typeof DeliveryReturnsRoute
   '/shop': typeof ShopRoute
   '/checkout/confirmation': typeof CheckoutConfirmationRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -83,6 +90,7 @@ export interface FileRoutesByTo {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/delivery-returns': typeof DeliveryReturnsRoute
   '/shop': typeof ShopRoute
   '/checkout/confirmation': typeof CheckoutConfirmationRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -95,6 +103,7 @@ export interface FileRoutesById {
   '/cart': typeof CartRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
+  '/delivery-returns': typeof DeliveryReturnsRoute
   '/shop': typeof ShopRoute
   '/checkout_/confirmation': typeof CheckoutConfirmationRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -108,6 +117,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/contact'
+    | '/delivery-returns'
     | '/shop'
     | '/checkout/confirmation'
     | '/product/$slug'
@@ -119,6 +129,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/contact'
+    | '/delivery-returns'
     | '/shop'
     | '/checkout/confirmation'
     | '/product/$slug'
@@ -130,6 +141,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/checkout'
     | '/contact'
+    | '/delivery-returns'
     | '/shop'
     | '/checkout_/confirmation'
     | '/product/$slug'
@@ -142,6 +154,7 @@ export interface RootRouteChildren {
   CartRoute: typeof CartRoute
   CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
+  DeliveryReturnsRoute: typeof DeliveryReturnsRoute
   ShopRoute: typeof ShopRoute
   CheckoutConfirmationRoute: typeof CheckoutConfirmationRoute
   ProductSlugRoute: typeof ProductSlugRoute
@@ -191,6 +204,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/delivery-returns': {
+      id: '/delivery-returns'
+      path: '/delivery-returns'
+      fullPath: '/delivery-returns'
+      preLoaderRoute: typeof DeliveryReturnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shop': {
       id: '/shop'
       path: '/shop'
@@ -222,6 +242,7 @@ const rootRouteChildren: RootRouteChildren = {
   CartRoute: CartRoute,
   CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
+  DeliveryReturnsRoute: DeliveryReturnsRoute,
   ShopRoute: ShopRoute,
   CheckoutConfirmationRoute: CheckoutConfirmationRoute,
   ProductSlugRoute: ProductSlugRoute,

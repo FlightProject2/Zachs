@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /cart
+Disallow: /checkout
+Disallow: /checkout/confirmation
+
+Sitemap: https://www.zachs.co.uk/sitemap.xml

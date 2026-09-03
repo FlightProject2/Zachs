@@ -8,27 +8,33 @@ import { Newsletter } from "@/components/newsletter";
 import { categories } from "@/data/categories";
 import { getBestsellers, getNewArrivals } from "@/data/products";
 import { StarRating } from "@/components/star-rating";
+import { SITE_URL } from "@/lib/site";
 
-export const Route = createFileRoute("/")({ component: Home });
+export const Route = createFileRoute("/")({
+  head: () => ({
+    links: [{ rel: "canonical", href: SITE_URL }],
+  }),
+  component: Home,
+});
 
 const TESTIMONIALS = [
   {
     quote:
       "My Monstera arrived in perfect condition, already bigger than the ones I've seen in shops. Genuinely impressed with the packaging.",
     name: "Freya H.",
-    location: "Bristol",
+    location: "Lurgan",
   },
   {
     quote:
-      "Ordered a gift set for my mum's birthday and she hasn't stopped talking about it. Will definitely be back for more.",
+      "Ordered a gift set for my mum's birthday and she hasn't stopped talking about it. Lovely to support a Northern Ireland nursery too.",
     name: "Tom R.",
-    location: "Manchester",
+    location: "Craigavon",
   },
   {
     quote:
       "Fast delivery, great care instructions included, and the plants themselves are noticeably healthier than anywhere else I've tried.",
     name: "Priya S.",
-    location: "London",
+    location: "Belfast",
   },
 ];
 

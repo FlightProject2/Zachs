@@ -8,15 +8,15 @@ export function Hero() {
       <div className="grid items-center gap-10 lg:grid-cols-2">
         <div>
           <p className="mb-4 inline-flex items-center rounded-full bg-brand-100 px-3 py-1 text-xs font-medium text-brand-800">
-            New season arrivals now in stock
+            Lurgan&apos;s independent plant nursery
           </p>
           <h1 className="text-balance font-display text-4xl leading-[1.08] text-brand-950 sm:text-5xl lg:text-[3.4rem]">
-            Beautiful plants, delivered to your door.
+            Beautiful plants, delivered across Northern Ireland.
           </h1>
           <p className="mt-5 max-w-md text-balance text-[15px] leading-relaxed text-muted">
-            Zachs is a small nursery growing healthy, happy houseplants,
-            outdoor greenery and everything you need to keep them thriving.
-            Hand-packed and shipped with care across the UK.
+            Zachs is a small nursery in Lurgan growing healthy, happy
+            houseplants, outdoor greenery and everything you need to keep
+            them thriving. Hand-packed and shipped with care across NI.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link

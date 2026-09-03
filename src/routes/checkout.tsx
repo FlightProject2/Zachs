@@ -7,7 +7,12 @@ import { PlantArt } from "@/components/plant-art";
 import { formatPrice } from "@/lib/format";
 
 export const Route = createFileRoute("/checkout")({
-  head: () => ({ meta: [{ title: "Checkout | Zachs" }] }),
+  head: () => ({
+    meta: [
+      { title: "Checkout | Zachs" },
+      { name: "robots", content: "noindex, follow" },
+    ],
+  }),
   component: CheckoutPage,
 });
 

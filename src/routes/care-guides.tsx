@@ -2,16 +2,19 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Droplets, Sun, Thermometer, Wind } from "lucide-react";
 import { PlantArt } from "@/components/plant-art";
 import { SectionHeading } from "@/components/section-heading";
+import { SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/care-guides")({
   head: () => ({
     meta: [
-      { title: "Plant Care Guides | Zachs" },
+      { title: "Plant Care Guides | Zachs, Lurgan" },
       {
         name: "description",
-        content: "Simple, practical plant care guides from the Zachs nursery team.",
+        content:
+          "Simple, practical plant care guides from the Zachs nursery team in Lurgan — including tips suited to Northern Ireland's mild, damp climate.",
       },
     ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/care-guides` }],
   }),
   component: CareGuidesPage,
 });

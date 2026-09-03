@@ -15,8 +15,8 @@ export function Footer() {
             <span className="font-display text-xl text-white">Zachs</span>
           </Link>
           <p className="mt-4 max-w-xs text-sm text-brand-200">
-            A small nursery growing beautiful, healthy plants &mdash; delivered
-            straight to your door across the UK.
+            A small nursery in Lurgan, Northern Ireland, growing beautiful,
+            healthy plants &mdash; delivered straight to your door.
           </p>
           <div className="mt-5 flex items-center gap-3">
             <a
@@ -68,7 +68,7 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/shop" className="hover:text-white">
+              <Link to="/delivery-returns" className="hover:text-white">
                 Delivery &amp; Returns
               </Link>
             </li>
@@ -88,7 +88,7 @@ export function Footer() {
       <div className="border-t border-white/10 py-6">
         <div className="container-page flex flex-col items-center justify-between gap-2 text-xs text-brand-300 sm:flex-row">
           <p>&copy; {new Date().getFullYear()} Zachs Plant Nursery. All rights reserved.</p>
-          <p>Zachs.co.uk &middot; Grown in Kent, UK</p>
+          <p>Zachs.co.uk &middot; Grown in Lurgan, Northern Ireland</p>
         </div>
       </div>
     </footer>

@@ -1,7 +1,7 @@
 import { Leaf, ShieldCheck, Truck, Undo2 } from "lucide-react";
 
 const ITEMS = [
-  { icon: Truck, title: "Free UK delivery", subtitle: "On orders over £45" },
+  { icon: Truck, title: "Free NI delivery", subtitle: "On orders over £45" },
   { icon: Leaf, title: "Grown with care", subtitle: "Nursery-fresh, not warehouse-stored" },
   { icon: ShieldCheck, title: "30-day guarantee", subtitle: "Healthy on arrival, or it's on us" },
   { icon: Undo2, title: "Easy returns", subtitle: "Simple, no-fuss process" },

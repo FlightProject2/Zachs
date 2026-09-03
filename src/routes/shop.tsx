@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ShopFilters } from "@/components/shop/shop-filters";
 import { ProductCard } from "@/components/product-card";
+import { JsonLd } from "@/components/json-ld";
 import { products } from "@/data/products";
 import { getCategory } from "@/data/categories";
+import { SITE_URL } from "@/lib/site";
 
 interface ShopSearch {
   category?: string;
@@ -14,16 +16,27 @@ export const Route = createFileRoute("/shop")({
     category: typeof search.category === "string" ? search.category : undefined,
     sort: typeof search.sort === "string" ? search.sort : undefined,
   }),
-  head: () => ({
-    meta: [
-      { title: "Shop All Plants | Zachs" },
-      {
-        name: "description",
-        content:
-          "Browse houseplants, outdoor plants, succulents, pots and plant care essentials from Zachs nursery.",
-      },
-    ],
-  }),
+  head: ({ match }) => {
+    const categorySlug = match.search.category;
+    const category = categorySlug ? getCategory(categorySlug) : undefined;
+    // Canonicalize away only the "sort" param — it reorders the same set of
+    // products rather than changing the page's content. A valid category
+    // keeps its own self-referencing canonical since it's a genuinely
+    // different set of products and search intent.
+    const canonical = category
+      ? `${SITE_URL}/shop?category=${category.slug}`
+      : `${SITE_URL}/shop`;
+    const title = category
+      ? `${category.name} | Zachs, Lurgan`
+      : "Shop All Plants | Zachs, Lurgan";
+    const description = category
+      ? `${category.description} Grown by Zachs, a plant nursery in Lurgan, delivering across Northern Ireland.`
+      : "Browse houseplants, outdoor plants, succulents, pots and plant care essentials from Zachs — a plant nursery in Lurgan, delivering across Northern Ireland.";
+    return {
+      meta: [{ title }, { name: "description", content: description }],
+      links: [{ rel: "canonical", href: canonical }],
+    };
+  },
   component: ShopPage,
 });
 
@@ -53,8 +66,27 @@ function ShopPage() {
   const sorted = sortProducts(filtered, activeSort);
   const activeCategoryData = activeCategory !== "all" ? getCategory(activeCategory) : undefined;
 
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Shop", item: `${SITE_URL}/shop` },
+      ...(activeCategoryData
+        ? [
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: activeCategoryData.name,
+              item: `${SITE_URL}/shop?category=${activeCategoryData.slug}`,
+            },
+          ]
+        : []),
+    ],
+  };
+
   return (
     <div className="container-page py-10">
+      <JsonLd data={breadcrumbJsonLd} />
       <div className="mb-8">
         <h1 className="font-display text-3xl text-brand-950">
           {activeCategoryData ? activeCategoryData.name : "Shop All Plants"}

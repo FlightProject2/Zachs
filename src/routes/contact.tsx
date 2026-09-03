@@ -1,21 +1,27 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
+import { SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact Us | Zachs" },
-      { name: "description", content: "Get in touch with the Zachs plant nursery team." },
+      { title: "Contact Us | Zachs Plant Nursery, Lurgan" },
+      {
+        name: "description",
+        content:
+          "Get in touch with the Zachs plant nursery team in Lurgan, Northern Ireland — order questions, plant care advice, or just to say hello.",
+      },
     ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/contact` }],
   }),
   component: ContactPage,
 });
 
 const DETAILS = [
   { icon: Mail, label: "Email", value: "hello@zachs.co.uk" },
-  { icon: Phone, label: "Phone", value: "01622 000 000" },
-  { icon: MapPin, label: "Nursery", value: "Maidstone, Kent, UK" },
+  { icon: Phone, label: "Phone", value: "028 3832 0000" },
+  { icon: MapPin, label: "Nursery", value: "Lurgan, Co. Armagh, BT66" },
   { icon: Clock, label: "Hours", value: "Mon–Sat, 9am–5pm" },
 ];
 

@@ -12,7 +12,12 @@ export const Route = createFileRoute("/checkout_/confirmation")({
     order: typeof search.order === "string" ? search.order : undefined,
     total: typeof search.total === "string" ? search.total : undefined,
   }),
-  head: () => ({ meta: [{ title: "Order Confirmed | Zachs" }] }),
+  head: () => ({
+    meta: [
+      { title: "Order Confirmed | Zachs" },
+      { name: "robots", content: "noindex, follow" },
+    ],
+  }),
   component: ConfirmationPage,
 });
 

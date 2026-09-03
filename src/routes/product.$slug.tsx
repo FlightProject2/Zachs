@@ -1,4 +1,4 @@
-import { createFileRoute, notFound } from "@tanstack/react-router";
+import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { Droplets, Heart, PawPrint, Sun } from "lucide-react";
 import { getProduct, getRelatedProducts } from "@/data/products";
 import { getCategory } from "@/data/categories";
@@ -7,7 +7,9 @@ import { StarRating } from "@/components/star-rating";
 import { ProductPurchasePanel } from "@/components/product-purchase-panel";
 import { ProductCard } from "@/components/product-card";
 import { SectionHeading } from "@/components/section-heading";
+import { JsonLd } from "@/components/json-ld";
 import { formatPrice } from "@/lib/format";
+import { BUSINESS, SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/product/$slug")({
   loader: ({ params }) => {
@@ -15,14 +17,24 @@ export const Route = createFileRoute("/product/$slug")({
     if (!product) throw notFound();
     return product;
   },
-  head: ({ loaderData }) => ({
-    meta: loaderData
-      ? [
-          { title: `${loaderData.name} | Zachs` },
-          { name: "description", content: loaderData.shortDescription },
-        ]
-      : [],
-  }),
+  head: ({ loaderData }) => {
+    if (!loaderData) return { meta: [] };
+    const canonical = `${SITE_URL}/product/${loaderData.slug}`;
+    const title = `${loaderData.name} | Zachs, Lurgan`;
+    return {
+      meta: [
+        { title },
+        { name: "description", content: loaderData.shortDescription },
+        { property: "og:type", content: "product" },
+        { property: "og:title", content: title },
+        { property: "og:description", content: loaderData.shortDescription },
+        { property: "og:url", content: canonical },
+        { property: "product:price:amount", content: String(loaderData.price) },
+        { property: "product:price:currency", content: "GBP" },
+      ],
+      links: [{ rel: "canonical", href: canonical }],
+    };
+  },
   component: ProductPage,
 });
 
@@ -30,15 +42,77 @@ function ProductPage() {
   const product = Route.useLoaderData();
   const category = getCategory(product.category);
   const related = getRelatedProducts(product, 4);
+  const canonicalUrl = `${SITE_URL}/product/${product.slug}`;
+
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: product.description,
+    sku: product.slug,
+    brand: { "@type": "Brand", name: SITE_NAME },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: product.rating,
+      reviewCount: product.reviewCount,
+    },
+    offers: {
+      "@type": "Offer",
+      url: canonicalUrl,
+      priceCurrency: "GBP",
+      price: product.price,
+      availability:
+        product.stock > 0
+          ? "https://schema.org/InStock"
+          : "https://schema.org/OutOfStock",
+      areaServed: "GB-NIR",
+      seller: { "@type": "Organization", name: BUSINESS.legalName },
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Shop", item: `${SITE_URL}/shop` },
+      ...(category
+        ? [
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: category.name,
+              item: `${SITE_URL}/shop?category=${category.slug}`,
+            },
+          ]
+        : []),
+      {
+        "@type": "ListItem",
+        position: category ? 3 : 2,
+        name: product.name,
+        item: canonicalUrl,
+      },
+    ],
+  };
 
   return (
     <div className="container-page py-10">
-      <nav className="mb-6 text-xs text-muted">
-        <span>Shop</span>
+      <JsonLd data={productJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
+
+      <nav className="mb-6 text-xs text-muted" aria-label="Breadcrumb">
+        <Link to="/shop" className="hover:text-brand-700">
+          Shop
+        </Link>
         {category && (
           <>
             {" / "}
-            <span>{category.name}</span>
+            <Link
+              to="/shop"
+              search={{ category: category.slug }}
+              className="hover:text-brand-700"
+            >
+              {category.name}
+            </Link>
           </>
         )}
         {" / "}

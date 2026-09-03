@@ -6,7 +6,12 @@ import { QuantityStepper } from "@/components/quantity-stepper";
 import { formatPrice } from "@/lib/format";
 
 export const Route = createFileRoute("/cart")({
-  head: () => ({ meta: [{ title: "Your Basket | Zachs" }] }),
+  head: () => ({
+    meta: [
+      { title: "Your Basket | Zachs" },
+      { name: "robots", content: "noindex, follow" },
+    ],
+  }),
   component: CartPage,
 });
 
@@ -44,7 +49,7 @@ function CartPage() {
 
       {remaining > 0 && (
         <p className="mt-3 rounded-xl bg-brand-50 px-4 py-3 text-sm text-brand-800">
-          Add {formatPrice(remaining)} more to unlock free UK delivery.
+          Add {formatPrice(remaining)} more to unlock free NI delivery.
         </p>
       )}
 
