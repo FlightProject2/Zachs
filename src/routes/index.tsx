@@ -5,12 +5,24 @@ import { SectionHeading } from "@/components/section-heading";
 import { ProductCard } from "@/components/product-card";
 import { CategoryCard } from "@/components/category-card";
 import { Newsletter } from "@/components/newsletter";
-import { categories } from "@/data/categories";
-import { getBestsellers, getNewArrivals } from "@/data/products";
+import { getBestsellers, getNewArrivals } from "@/data/product-helpers";
+import { getProductsFn } from "@/server/products";
+import { getCategoriesFn } from "@/server/categories";
 import { StarRating } from "@/components/star-rating";
 import { SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
+  loader: async () => {
+    const [products, categories] = await Promise.all([
+      getProductsFn(),
+      getCategoriesFn(),
+    ]);
+    return {
+      categories,
+      bestsellers: getBestsellers(products, 8),
+      newArrivals: getNewArrivals(products, 4),
+    };
+  },
   head: () => ({
     links: [{ rel: "canonical", href: SITE_URL }],
   }),
@@ -39,8 +51,7 @@ const TESTIMONIALS = [
 ];
 
 function Home() {
-  const bestsellers = getBestsellers(8);
-  const newArrivals = getNewArrivals(4);
+  const { categories, bestsellers, newArrivals } = Route.useLoaderData();
 
   return (
     <>

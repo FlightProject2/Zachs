@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { AtSign, Mail } from "lucide-react";
-import { categories } from "@/data/categories";
+import type { Category } from "@/data/categories";
 import { Newsletter } from "@/components/newsletter";
 
-export function Footer() {
+export function Footer({ categories }: { categories: Category[] }) {
   return (
     <footer className="mt-24 bg-brand-950 text-brand-100">
       <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5">

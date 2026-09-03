@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { Check, ShoppingBasket } from "lucide-react";
 import { useCart } from "@/context/cart-context";
+import type { Product } from "@/types/product";
 import clsx from "clsx";
 
 export function AddToCartButton({
-  slug,
+  product,
   size,
   quantity = 1,
   compact = false,
   label = "Add",
 }: {
-  slug: string;
+  product: Product;
   size?: string;
   quantity?: number;
   compact?: boolean;
@@ -20,7 +21,14 @@ export function AddToCartButton({
   const [justAdded, setJustAdded] = useState(false);
 
   function handleAdd() {
-    addItem(slug, quantity, size);
+    addItem({
+      slug: product.slug,
+      name: product.name,
+      price: product.price,
+      art: product.art,
+      size,
+      quantity,
+    });
     setJustAdded(true);
     window.setTimeout(() => setJustAdded(false), 1600);
   }
@@ -30,7 +38,7 @@ export function AddToCartButton({
       <button
         type="button"
         onClick={handleAdd}
-        aria-label={`Add ${slug} to basket`}
+        aria-label={`Add ${product.name} to basket`}
         className={clsx(
           "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border transition-colors",
           justAdded

@@ -3,5 +3,44 @@ Allow: /
 Disallow: /cart
 Disallow: /checkout
 Disallow: /checkout/confirmation
+Disallow: /admin
+
+# AI answer engines and assistants — explicitly allowed so Zachs plant care
+# guides and product info can be cited in AI-generated answers (AEO/GEO).
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
 
 Sitemap: https://www.zachs.co.uk/sitemap.xml

@@ -1,17 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, ShoppingBasket, X } from "lucide-react";
-import { categories } from "@/data/categories";
+import type { Category } from "@/data/categories";
 import { useCart } from "@/context/cart-context";
 
-const NAV_LINKS = [
-  { slug: undefined, label: "Shop All" },
-  ...categories.map((c) => ({ slug: c.slug, label: c.name })),
-];
-
-export function Header() {
+export function Header({ categories }: { categories: Category[] }) {
   const { itemCount, openCart } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
+  const navLinks = [
+    { slug: undefined, label: "Shop All" },
+    ...categories.map((c) => ({ slug: c.slug, label: c.name })),
+  ];
 
   return (
     <>
@@ -40,7 +39,7 @@ export function Header() {
           </Link>
 
           <nav className="hidden flex-1 items-center justify-center gap-6 lg:flex">
-            {NAV_LINKS.slice(0, 7).map((link) => (
+            {navLinks.slice(0, 7).map((link) => (
               <Link
                 key={link.label}
                 to="/shop"
@@ -101,7 +100,7 @@ export function Header() {
               </button>
             </div>
             <nav className="flex flex-col gap-1">
-              {NAV_LINKS.map((link) => (
+              {navLinks.map((link) => (
                 <Link
                   key={link.label}
                   to="/shop"

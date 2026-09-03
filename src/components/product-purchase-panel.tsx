@@ -2,22 +2,25 @@ import { useState } from "react";
 import { Check, ShoppingBasket } from "lucide-react";
 import { useCart } from "@/context/cart-context";
 import { QuantityStepper } from "@/components/quantity-stepper";
+import type { Product } from "@/types/product";
 import clsx from "clsx";
 
-export function ProductPurchasePanel({
-  slug,
-  sizes,
-}: {
-  slug: string;
-  sizes?: string[];
-}) {
+export function ProductPurchasePanel({ product }: { product: Product }) {
   const { addItem } = useCart();
-  const [size, setSize] = useState(sizes?.[0]);
+  const [size, setSize] = useState(product.sizes?.[0]);
   const [quantity, setQuantity] = useState(1);
   const [justAdded, setJustAdded] = useState(false);
+  const sizes = product.sizes;
 
   function handleAdd() {
-    addItem(slug, quantity, size);
+    addItem({
+      slug: product.slug,
+      name: product.name,
+      price: product.price,
+      art: product.art,
+      size,
+      quantity,
+    });
     setJustAdded(true);
     window.setTimeout(() => setJustAdded(false), 1600);
   }

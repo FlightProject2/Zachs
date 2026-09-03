@@ -2,6 +2,7 @@ import {
   HeadContent,
   Scripts,
   createRootRoute,
+  useRouterState,
 } from "@tanstack/react-router";
 import { CartProvider } from "@/context/cart-context";
 import { Header } from "@/components/header";
@@ -9,10 +10,15 @@ import { Footer } from "@/components/footer";
 import { CartDrawer } from "@/components/cart-drawer";
 import { NotFound } from "@/components/not-found";
 import { JsonLd } from "@/components/json-ld";
+import { getCategoriesFn } from "@/server/categories";
 import { BUSINESS, SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
+  loader: async () => {
+    const categories = await getCategoriesFn();
+    return { categories };
+  },
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -75,6 +81,10 @@ const localBusinessJsonLd = {
 };
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const { categories } = Route.useLoaderData();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isAdmin = pathname === "/admin" || pathname.startsWith("/admin/");
+
   return (
     <html lang="en-GB" data-scroll-behavior="smooth" className="h-full antialiased">
       <head>
@@ -83,10 +93,16 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <JsonLd data={localBusinessJsonLd} />
         <CartProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <CartDrawer />
+          {isAdmin ? (
+            <main className="flex-1">{children}</main>
+          ) : (
+            <>
+              <Header categories={categories} />
+              <main className="flex-1">{children}</main>
+              <Footer categories={categories} />
+              <CartDrawer />
+            </>
+          )}
         </CartProvider>
         <Scripts />
       </body>

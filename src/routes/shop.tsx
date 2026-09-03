@@ -2,8 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ShopFilters } from "@/components/shop/shop-filters";
 import { ProductCard } from "@/components/product-card";
 import { JsonLd } from "@/components/json-ld";
-import { products } from "@/data/products";
-import { getCategory } from "@/data/categories";
+import { getProductsFn } from "@/server/products";
+import { getCategoriesFn } from "@/server/categories";
+import { getCategory } from "@/data/category-helpers";
+import type { Product } from "@/types/product";
 import { SITE_URL } from "@/lib/site";
 
 interface ShopSearch {
@@ -16,9 +18,19 @@ export const Route = createFileRoute("/shop")({
     category: typeof search.category === "string" ? search.category : undefined,
     sort: typeof search.sort === "string" ? search.sort : undefined,
   }),
-  head: ({ match }) => {
+  loader: async () => {
+    const [products, categories] = await Promise.all([
+      getProductsFn(),
+      getCategoriesFn(),
+    ]);
+    return { products, categories };
+  },
+  head: ({ match, loaderData }) => {
     const categorySlug = match.search.category;
-    const category = categorySlug ? getCategory(categorySlug) : undefined;
+    const category =
+      categorySlug && loaderData
+        ? getCategory(loaderData.categories, categorySlug)
+        : undefined;
     // Canonicalize away only the "sort" param — it reorders the same set of
     // products rather than changing the page's content. A valid category
     // keeps its own self-referencing canonical since it's a genuinely
@@ -40,7 +52,7 @@ export const Route = createFileRoute("/shop")({
   component: ShopPage,
 });
 
-function sortProducts(list: typeof products, sort: string) {
+function sortProducts(list: Product[], sort: string) {
   const copy = [...list];
   switch (sort) {
     case "price-asc":
@@ -56,6 +68,7 @@ function sortProducts(list: typeof products, sort: string) {
 
 function ShopPage() {
   const { category, sort } = Route.useSearch();
+  const { products, categories } = Route.useLoaderData();
   const activeCategory = category ?? "all";
   const activeSort = sort ?? "featured";
 
@@ -64,7 +77,8 @@ function ShopPage() {
       ? products
       : products.filter((p) => p.category === activeCategory);
   const sorted = sortProducts(filtered, activeSort);
-  const activeCategoryData = activeCategory !== "all" ? getCategory(activeCategory) : undefined;
+  const activeCategoryData =
+    activeCategory !== "all" ? getCategory(categories, activeCategory) : undefined;
 
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
@@ -98,7 +112,11 @@ function ShopPage() {
         </p>
       </div>
 
-      <ShopFilters activeCategory={activeCategory} activeSort={activeSort} />
+      <ShopFilters
+        activeCategory={activeCategory}
+        activeSort={activeSort}
+        categories={categories}
+      />
 
       {sorted.length === 0 ? (
         <p className="mt-16 text-center text-muted">

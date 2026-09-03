@@ -9,6 +9,7 @@
     "dev": "vite dev --port 3000",
     "generate-routes": "tsr generate",
     "generate-sitemap": "tsx scripts/generate-sitemap.ts",
+    "seed-data": "tsx scripts/seed-data.ts",
     "build": "npm run generate-sitemap && vite build",
     "preview": "vite preview",
     "lint": "eslint",

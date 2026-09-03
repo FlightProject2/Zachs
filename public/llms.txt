@@ -1,0 +1,36 @@
+# Zachs
+
+> Zachs is a plant nursery based in Lurgan, County Armagh, Northern Ireland,
+> selling healthy houseplants, outdoor plants, succulents & cacti, pots &
+> planters, plant care essentials and gift sets, with delivery across
+> Northern Ireland and local collection from the nursery.
+
+Zachs hand-packs every plant at its Lurgan nursery. Free delivery applies to
+Northern Ireland orders over £45 (a flat £4.95 courier charge otherwise), and
+every plant is covered by a 30-day healthy-on-arrival guarantee. Local
+delivery and collection cover Lurgan, Craigavon, Portadown, Armagh,
+Banbridge and Belfast.
+
+## Shop
+
+- [All plants](https://www.zachs.co.uk/shop): the full catalogue, filterable by category.
+- [Houseplants](https://www.zachs.co.uk/shop?category=houseplants): air-purifying, statement-making leaves for every room.
+- [Outdoor Plants](https://www.zachs.co.uk/shop?category=outdoor-plants): hardy, garden-ready plants that thrive outside.
+- [Succulents & Cacti](https://www.zachs.co.uk/shop?category=succulents-cacti): low-maintenance shapes for sunny windowsills.
+- [Pots & Planters](https://www.zachs.co.uk/shop?category=pots-planters): ceramic, terracotta and woven homes for plants.
+- [Plant Care](https://www.zachs.co.uk/shop?category=plant-care): feeds, tools and tonics to keep everything thriving.
+- [Gift Sets](https://www.zachs.co.uk/shop?category=gift-sets): curated bundles, ready to arrive beautifully boxed.
+
+## Guides
+
+- [Care Guides](https://www.zachs.co.uk/care-guides): plant-by-plant light, water and care advice.
+- [Delivery & Returns](https://www.zachs.co.uk/delivery-returns): delivery areas, costs, timings, guarantee and returns — includes FAQ.
+
+## About
+
+- [About Zachs](https://www.zachs.co.uk/about): the nursery's story and team.
+- [Contact](https://www.zachs.co.uk/contact): how to reach the Lurgan team.
+
+## Optional
+
+- [Sitemap](https://www.zachs.co.uk/sitemap.xml): full list of indexable pages.

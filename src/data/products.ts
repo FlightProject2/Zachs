@@ -1,5 +1,9 @@
 import type { Product } from "@/types/product";
 
+// Seed data only — consumed by `npm run seed-data` to initialize
+// data/products.json, the live editable store behind the admin panel and
+// storefront. Editing this file after the first seed has no effect on the
+// running site; edit products through /admin/products instead.
 export const products: Product[] = [
   // Houseplants
   {
@@ -432,24 +436,3 @@ export const products: Product[] = [
   },
 ];
 
-export function getProduct(slug: string) {
-  return products.find((p) => p.slug === slug);
-}
-
-export function getProductsByCategory(category: string) {
-  return products.filter((p) => p.category === category);
-}
-
-export function getRelatedProducts(product: Product, count = 4) {
-  return products
-    .filter((p) => p.category === product.category && p.slug !== product.slug)
-    .slice(0, count);
-}
-
-export function getBestsellers(count = 8) {
-  return products.filter((p) => p.tags?.includes("bestseller")).slice(0, count);
-}
-
-export function getNewArrivals(count = 8) {
-  return products.filter((p) => p.tags?.includes("new")).slice(0, count);
-}

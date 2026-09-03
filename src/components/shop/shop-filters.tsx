@@ -1,5 +1,5 @@
 import { useNavigate } from "@tanstack/react-router";
-import { categories } from "@/data/categories";
+import type { Category } from "@/data/categories";
 import clsx from "clsx";
 
 const SORT_OPTIONS = [
@@ -12,9 +12,11 @@ const SORT_OPTIONS = [
 export function ShopFilters({
   activeCategory,
   activeSort,
+  categories,
 }: {
   activeCategory: string;
   activeSort: string;
+  categories: Category[];
 }) {
   const navigate = useNavigate({ from: "/shop" });
 

@@ -1,7 +1,8 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
 import { Droplets, Heart, PawPrint, Sun } from "lucide-react";
-import { getProduct, getRelatedProducts } from "@/data/products";
-import { getCategory } from "@/data/categories";
+import { getProductBySlugFn } from "@/server/products";
+import { getCategoriesFn } from "@/server/categories";
+import { getCategory } from "@/data/category-helpers";
 import { PlantArt } from "@/components/plant-art";
 import { StarRating } from "@/components/star-rating";
 import { ProductPurchasePanel } from "@/components/product-purchase-panel";
@@ -12,24 +13,28 @@ import { formatPrice } from "@/lib/format";
 import { BUSINESS, SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/product/$slug")({
-  loader: ({ params }) => {
-    const product = getProduct(params.slug);
+  loader: async ({ params }) => {
+    const [{ product, related }, categories] = await Promise.all([
+      getProductBySlugFn({ data: { slug: params.slug } }),
+      getCategoriesFn(),
+    ]);
     if (!product) throw notFound();
-    return product;
+    return { product, related, category: getCategory(categories, product.category) };
   },
   head: ({ loaderData }) => {
     if (!loaderData) return { meta: [] };
-    const canonical = `${SITE_URL}/product/${loaderData.slug}`;
-    const title = `${loaderData.name} | Zachs, Lurgan`;
+    const { product } = loaderData;
+    const canonical = `${SITE_URL}/product/${product.slug}`;
+    const title = `${product.name} | Zachs, Lurgan`;
     return {
       meta: [
         { title },
-        { name: "description", content: loaderData.shortDescription },
+        { name: "description", content: product.shortDescription },
         { property: "og:type", content: "product" },
         { property: "og:title", content: title },
-        { property: "og:description", content: loaderData.shortDescription },
+        { property: "og:description", content: product.shortDescription },
         { property: "og:url", content: canonical },
-        { property: "product:price:amount", content: String(loaderData.price) },
+        { property: "product:price:amount", content: String(product.price) },
         { property: "product:price:currency", content: "GBP" },
       ],
       links: [{ rel: "canonical", href: canonical }],
@@ -39,9 +44,7 @@ export const Route = createFileRoute("/product/$slug")({
 });
 
 function ProductPage() {
-  const product = Route.useLoaderData();
-  const category = getCategory(product.category);
-  const related = getRelatedProducts(product, 4);
+  const { product, related, category } = Route.useLoaderData();
   const canonicalUrl = `${SITE_URL}/product/${product.slug}`;
 
   const productJsonLd = {
@@ -182,7 +185,7 @@ function ProductPage() {
           )}
 
           <div className="mt-8">
-            <ProductPurchasePanel slug={product.slug} sizes={product.sizes} />
+            <ProductPurchasePanel product={product} />
           </div>
 
           <p className="mt-4 text-xs text-muted">

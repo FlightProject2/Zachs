@@ -1,5 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { Leaf, MapPin, PackageCheck, RotateCcw, Truck } from "lucide-react";
+import { JsonLd } from "@/components/json-ld";
 import { SITE_URL } from "@/lib/site";
 
 export const Route = createFileRoute("/delivery-returns")({
@@ -17,6 +18,39 @@ export const Route = createFileRoute("/delivery-returns")({
   component: DeliveryReturnsPage,
 });
 
+const FAQS = [
+  {
+    question: "How much does delivery cost in Northern Ireland?",
+    answer:
+      "Delivery is free on all Northern Ireland orders over £45. Below £45, a flat £4.95 courier charge applies, and most orders arrive within 2–3 working days of dispatch.",
+  },
+  {
+    question: "Do you deliver locally to Lurgan?",
+    answer:
+      "Yes. We regularly deliver to Lurgan, Craigavon, Portadown, Armagh, Banbridge and Belfast. Local collection from the nursery is also available — choose it at checkout or get in touch to arrange a time.",
+  },
+  {
+    question: "What happens if my plant arrives damaged or unwell?",
+    answer:
+      "Every plant is covered by our 30-day healthy-on-arrival guarantee. Email us a photo within 48 hours of delivery and we'll send a free replacement or refund.",
+  },
+  {
+    question: "Can I return a plant if I change my mind?",
+    answer:
+      "Pots, planters and plant care items can be returned unused within 14 days for a full refund. As living products, plants themselves are covered by our healthy-on-arrival guarantee rather than a standard return.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((faq) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: { "@type": "Answer", text: faq.answer },
+  })),
+};
+
 const LOCAL_AREAS = [
   "Lurgan",
   "Craigavon",
@@ -29,6 +63,7 @@ const LOCAL_AREAS = [
 function DeliveryReturnsPage() {
   return (
     <div className="container-page py-14">
+      <JsonLd data={faqJsonLd} />
       <div className="max-w-2xl">
         <p className="mb-3 text-xs font-medium uppercase tracking-[0.14em] text-brand-600">
           Good to know

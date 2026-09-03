@@ -9,6 +9,7 @@ export interface Category {
   to: string;
 }
 
+// Seed data only — see the comment in src/data/products.ts.
 export const categories: Category[] = [
   {
     slug: "houseplants",
@@ -59,7 +60,3 @@ export const categories: Category[] = [
     to: "#6ca06a",
   },
 ];
-
-export function getCategory(slug: string) {
-  return categories.find((c) => c.slug === slug);
-}

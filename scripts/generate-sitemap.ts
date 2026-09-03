@@ -1,7 +1,6 @@
 import { writeFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { products } from "../src/data/products";
-import { categories } from "../src/data/categories";
+import { readProducts, readCategories } from "../src/server/store";
 import { SITE_URL } from "../src/lib/site";
 
 interface UrlEntry {
@@ -18,6 +17,8 @@ const staticPages: UrlEntry[] = [
   { path: "/care-guides", changefreq: "weekly", priority: 0.7 },
   { path: "/delivery-returns", changefreq: "monthly", priority: 0.5 },
 ];
+
+const [products, categories] = await Promise.all([readProducts(), readCategories()]);
 
 const categoryPages: UrlEntry[] = categories.map((c) => ({
   path: `/shop?category=${c.slug}`,

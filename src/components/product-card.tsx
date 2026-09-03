@@ -60,7 +60,7 @@ export function ProductCard({ product }: { product: Product }) {
               </span>
             )}
           </div>
-          <AddToCartButton slug={product.slug} compact />
+          <AddToCartButton product={product} compact />
         </div>
       </div>
     </div>
