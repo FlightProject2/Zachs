@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf8f3;
+  --surface: #ffffff;
+  --foreground: #1c231c;
+  --muted: #6b7268;
+
+  --brand-950: #0f2419;
+  --brand-900: #14301f;
+  --brand-800: #1c3f28;
+  --brand-700: #26502f;
+  --brand-600: #336a3d;
+  --brand-500: #46814d;
+  --brand-400: #6ca06a;
+  --brand-300: #9cc494;
+  --brand-200: #c9e2bf;
+  --brand-100: #e6f1de;
+  --brand-50: #f2f8ed;
+
+  --clay-600: #a4552f;
+  --clay-500: #bc6a3d;
+  --clay-400: #d1874f;
+  --clay-300: #e4ac7c;
+  --clay-100: #f7e4d3;
+
+  --sand-100: #f3ecdd;
+  --sand-200: #ead9bc;
+
+  --line: #e4e0d3;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+
+  --color-brand-950: var(--brand-950);
+  --color-brand-900: var(--brand-900);
+  --color-brand-800: var(--brand-800);
+  --color-brand-700: var(--brand-700);
+  --color-brand-600: var(--brand-600);
+  --color-brand-500: var(--brand-500);
+  --color-brand-400: var(--brand-400);
+  --color-brand-300: var(--brand-300);
+  --color-brand-200: var(--brand-200);
+  --color-brand-100: var(--brand-100);
+  --color-brand-50: var(--brand-50);
+
+  --color-clay-600: var(--clay-600);
+  --color-clay-500: var(--clay-500);
+  --color-clay-400: var(--clay-400);
+  --color-clay-300: var(--clay-300);
+  --color-clay-100: var(--clay-100);
+
+  --color-sand-100: var(--sand-100);
+  --color-sand-200: var(--sand-200);
+
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-fraunces);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: var(--brand-200);
+  color: var(--brand-950);
+}
+
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-[1240px] px-5 sm:px-8;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
