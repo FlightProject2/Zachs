@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
 export function SectionHeading({
@@ -29,7 +29,7 @@ export function SectionHeading({
       </div>
       {href && (
         <Link
-          href={href}
+          to={href}
           className="inline-flex shrink-0 items-center gap-1.5 text-sm font-medium text-brand-800 hover:text-brand-600"
         >
           {linkLabel}

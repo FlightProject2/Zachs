@@ -1,7 +1,6 @@
-import { notFound } from "next/navigation";
-import type { Metadata } from "next";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { Droplets, Heart, PawPrint, Sun } from "lucide-react";
-import { getProduct, getRelatedProducts, products } from "@/data/products";
+import { getProduct, getRelatedProducts } from "@/data/products";
 import { getCategory } from "@/data/categories";
 import { PlantArt } from "@/components/plant-art";
 import { StarRating } from "@/components/star-rating";
@@ -10,31 +9,25 @@ import { ProductCard } from "@/components/product-card";
 import { SectionHeading } from "@/components/section-heading";
 import { formatPrice } from "@/lib/format";
 
-export function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }));
-}
+export const Route = createFileRoute("/product/$slug")({
+  loader: ({ params }) => {
+    const product = getProduct(params.slug);
+    if (!product) throw notFound();
+    return product;
+  },
+  head: ({ loaderData }) => ({
+    meta: loaderData
+      ? [
+          { title: `${loaderData.name} | Zachs` },
+          { name: "description", content: loaderData.shortDescription },
+        ]
+      : [],
+  }),
+  component: ProductPage,
+});
 
-interface ProductPageProps {
-  params: Promise<{ slug: string }>;
-}
-
-export async function generateMetadata({
-  params,
-}: ProductPageProps): Promise<Metadata> {
-  const { slug } = await params;
-  const product = getProduct(slug);
-  if (!product) return {};
-  return {
-    title: product.name,
-    description: product.shortDescription,
-  };
-}
-
-export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = await params;
-  const product = getProduct(slug);
-  if (!product) notFound();
-
+function ProductPage() {
+  const product = Route.useLoaderData();
   const category = getCategory(product.category);
   const related = getRelatedProducts(product, 4);
 

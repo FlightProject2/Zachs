@@ -36,7 +36,7 @@ interface PlantArtProps {
 }
 
 export function PlantArt({ icon, from, to, className, iconClassName }: PlantArtProps) {
-  const Icon = ICONS[icon] ?? Leaf;
+  const Icon = ICONS[icon];
   return (
     <div
       className={`relative flex items-center justify-center overflow-hidden ${className ?? ""}`}

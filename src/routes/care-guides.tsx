@@ -1,12 +1,20 @@
-import type { Metadata } from "next";
+import { createFileRoute } from "@tanstack/react-router";
 import { Droplets, Sun, Thermometer, Wind } from "lucide-react";
 import { PlantArt } from "@/components/plant-art";
 import { SectionHeading } from "@/components/section-heading";
 
-export const metadata: Metadata = {
-  title: "Plant Care Guides",
-  description: "Simple, practical plant care guides from the Zachs nursery team.",
-};
+export const Route = createFileRoute("/care-guides")({
+  head: () => ({
+    meta: [
+      { title: "Plant Care Guides | Zachs" },
+      {
+        name: "description",
+        content: "Simple, practical plant care guides from the Zachs nursery team.",
+      },
+    ],
+  }),
+  component: CareGuidesPage,
+});
 
 const GUIDES = [
   {
@@ -66,7 +74,7 @@ const ESSENTIALS = [
   { icon: Wind, title: "Humidity", body: "Group plants together or use a pebble tray to raise humidity naturally." },
 ];
 
-export default function CareGuidesPage() {
+function CareGuidesPage() {
   return (
     <div className="container-page py-14">
       <div className="max-w-2xl">

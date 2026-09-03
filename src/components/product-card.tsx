@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import type { Product } from "@/types/product";
 import { PlantArt } from "@/components/plant-art";
 import { StarRating } from "@/components/star-rating";
@@ -18,7 +18,8 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <div className="group flex flex-col">
       <Link
-        href={`/product/${product.slug}`}
+        to="/product/$slug"
+        params={{ slug: product.slug }}
         className="relative block overflow-hidden rounded-2xl"
       >
         <PlantArt
@@ -35,7 +36,11 @@ export function ProductCard({ product }: { product: Product }) {
         )}
       </Link>
       <div className="mt-3 flex flex-1 flex-col gap-1.5">
-        <Link href={`/product/${product.slug}`} className="flex-1">
+        <Link
+          to="/product/$slug"
+          params={{ slug: product.slug }}
+          className="flex-1"
+        >
           <h3 className="font-display text-[1.05rem] leading-snug text-foreground group-hover:text-brand-700">
             {product.name}
           </h3>

@@ -1,7 +1,7 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { Leaf } from "lucide-react";
 
-export default function NotFound() {
+export function NotFound() {
   return (
     <div className="container-page flex flex-col items-center py-24 text-center">
       <span className="flex h-16 w-16 items-center justify-center rounded-full bg-brand-100 text-brand-700">
@@ -15,7 +15,7 @@ export default function NotFound() {
         back to something green.
       </p>
       <Link
-        href="/"
+        to="/"
         className="mt-8 rounded-full bg-brand-900 px-6 py-3 text-sm font-medium text-white hover:bg-brand-800"
       >
         Back to home

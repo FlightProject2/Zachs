@@ -1,6 +1,4 @@
-"use client";
-
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { Minus, Plus, ShoppingBasket, X } from "lucide-react";
 import { useCart } from "@/context/cart-context";
 import { PlantArt } from "@/components/plant-art";
@@ -41,7 +39,7 @@ export function CartDrawer() {
               Browse our plants and find something to bring home.
             </p>
             <Link
-              href="/shop"
+              to="/shop"
               onClick={closeCart}
               className="mt-2 rounded-full bg-brand-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-800"
             >
@@ -57,7 +55,8 @@ export function CartDrawer() {
                   className="flex gap-3 border-b border-line py-4 first:pt-0"
                 >
                   <Link
-                    href={`/product/${item.slug}`}
+                    to="/product/$slug"
+                    params={{ slug: item.slug }}
                     onClick={closeCart}
                     className="shrink-0"
                   >
@@ -73,7 +72,8 @@ export function CartDrawer() {
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <Link
-                          href={`/product/${item.slug}`}
+                          to="/product/$slug"
+                          params={{ slug: item.slug }}
                           onClick={closeCart}
                           className="text-sm font-medium text-foreground hover:text-brand-700"
                         >
@@ -128,14 +128,14 @@ export function CartDrawer() {
                 </span>
               </div>
               <Link
-                href="/checkout"
+                to="/checkout"
                 onClick={closeCart}
                 className="flex w-full items-center justify-center rounded-full bg-brand-900 px-6 py-3.5 text-sm font-medium text-white hover:bg-brand-800"
               >
                 Checkout &middot; {formatPrice(subtotal)}
               </Link>
               <Link
-                href="/cart"
+                to="/cart"
                 onClick={closeCart}
                 className="mt-2 flex w-full items-center justify-center rounded-full px-6 py-2.5 text-sm text-brand-800 hover:underline"
               >

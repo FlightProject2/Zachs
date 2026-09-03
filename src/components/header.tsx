@@ -1,14 +1,12 @@
-"use client";
-
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Leaf, Menu, ShoppingBasket, X } from "lucide-react";
 import { categories } from "@/data/categories";
 import { useCart } from "@/context/cart-context";
 
 const NAV_LINKS = [
-  { href: "/shop", label: "Shop All" },
-  ...categories.map((c) => ({ href: `/shop?category=${c.slug}`, label: c.name })),
+  { slug: undefined, label: "Shop All" },
+  ...categories.map((c) => ({ slug: c.slug, label: c.name })),
 ];
 
 export function Header() {
@@ -31,7 +29,7 @@ export function Header() {
             <Menu size={22} />
           </button>
 
-          <Link href="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-brand-900 text-white">
               <Leaf size={18} />
             </span>
@@ -43,8 +41,9 @@ export function Header() {
           <nav className="hidden flex-1 items-center justify-center gap-6 lg:flex">
             {NAV_LINKS.slice(0, 7).map((link) => (
               <Link
-                key={link.href}
-                href={link.href}
+                key={link.label}
+                to="/shop"
+                search={link.slug ? { category: link.slug } : {}}
                 className="text-sm text-foreground/80 transition-colors hover:text-brand-700"
               >
                 {link.label}
@@ -54,13 +53,13 @@ export function Header() {
 
           <div className="flex items-center gap-1">
             <Link
-              href="/about"
+              to="/about"
               className="hidden rounded-full px-3 py-2 text-sm text-foreground/80 hover:text-brand-700 lg:inline-block"
             >
               About
             </Link>
             <Link
-              href="/contact"
+              to="/contact"
               className="hidden rounded-full px-3 py-2 text-sm text-foreground/80 hover:text-brand-700 lg:inline-block"
             >
               Contact
@@ -103,8 +102,9 @@ export function Header() {
             <nav className="flex flex-col gap-1">
               {NAV_LINKS.map((link) => (
                 <Link
-                  key={link.href}
-                  href={link.href}
+                  key={link.label}
+                  to="/shop"
+                  search={link.slug ? { category: link.slug } : {}}
                   onClick={() => setMenuOpen(false)}
                   className="rounded-lg px-3 py-2.5 text-[15px] text-foreground hover:bg-brand-50"
                 >
@@ -113,21 +113,21 @@ export function Header() {
               ))}
               <div className="my-2 h-px bg-line" />
               <Link
-                href="/about"
+                to="/about"
                 onClick={() => setMenuOpen(false)}
                 className="rounded-lg px-3 py-2.5 text-[15px] text-foreground hover:bg-brand-50"
               >
                 About
               </Link>
               <Link
-                href="/contact"
+                to="/contact"
                 onClick={() => setMenuOpen(false)}
                 className="rounded-lg px-3 py-2.5 text-[15px] text-foreground hover:bg-brand-50"
               >
                 Contact
               </Link>
               <Link
-                href="/care-guides"
+                to="/care-guides"
                 onClick={() => setMenuOpen(false)}
                 className="rounded-lg px-3 py-2.5 text-[15px] text-foreground hover:bg-brand-50"
               >

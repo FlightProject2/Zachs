@@ -1,6 +1,4 @@
-"use client";
-
-import { useRouter, useSearchParams } from "next/navigation";
+import { useNavigate } from "@tanstack/react-router";
 import { categories } from "@/data/categories";
 import clsx from "clsx";
 
@@ -18,18 +16,19 @@ export function ShopFilters({
   activeCategory: string;
   activeSort: string;
 }) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
+  const navigate = useNavigate({ from: "/shop" });
 
-  function updateParam(key: string, value: string) {
-    const params = new URLSearchParams(searchParams.toString());
-    if (value === "all" || value === "featured") {
-      params.delete(key);
-    } else {
-      params.set(key, value);
-    }
-    router.push(`/shop${params.toString() ? `?${params.toString()}` : ""}`, {
-      scroll: false,
+  function updateParam(key: "category" | "sort", value: string) {
+    navigate({
+      search: (prev) => {
+        const next = { ...prev };
+        if (value === "all" || value === "featured") {
+          delete next[key];
+        } else {
+          next[key] = value;
+        }
+        return next;
+      },
     });
   }
 

@@ -1,5 +1,3 @@
-"use client";
-
 import {
   createContext,
   useCallback,
@@ -7,8 +5,8 @@ import {
   useEffect,
   useMemo,
   useState,
-  type ReactNode,
 } from "react";
+import type { ReactNode } from "react";
 import { getProduct } from "@/data/products";
 import type { ArtIcon } from "@/types/product";
 
@@ -55,7 +53,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     // One-time hydration from localStorage (an external system) on mount.
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
-      // eslint-disable-next-line react-hooks/set-state-in-effect
       if (raw) setLines(JSON.parse(raw));
     } catch {
       // ignore corrupted storage

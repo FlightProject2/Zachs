@@ -1,6 +1,5 @@
-"use client";
-
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react";
 import { CheckCircle2 } from "lucide-react";
 
 export function ContactForm() {

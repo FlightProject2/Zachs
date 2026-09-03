@@ -1,12 +1,20 @@
-import type { Metadata } from "next";
+import { createFileRoute } from "@tanstack/react-router";
 import { Leaf, Sprout, Truck, Users } from "lucide-react";
 import { PlantArt } from "@/components/plant-art";
 
-export const metadata: Metadata = {
-  title: "About Us",
-  description:
-    "Learn about Zachs, a UK plant nursery growing healthy houseplants and outdoor greenery for over a decade.",
-};
+export const Route = createFileRoute("/about")({
+  head: () => ({
+    meta: [
+      { title: "About Us | Zachs" },
+      {
+        name: "description",
+        content:
+          "Learn about Zachs, a UK plant nursery growing healthy houseplants and outdoor greenery for over a decade.",
+      },
+    ],
+  }),
+  component: AboutPage,
+});
 
 const VALUES = [
   {
@@ -31,7 +39,7 @@ const VALUES = [
   },
 ];
 
-export default function AboutPage() {
+function AboutPage() {
   return (
     <div>
       <section className="container-page py-14">

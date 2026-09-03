@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { Leaf, AtSign, Mail } from "lucide-react";
 import { categories } from "@/data/categories";
 import { Newsletter } from "@/components/newsletter";
@@ -8,7 +8,7 @@ export function Footer() {
     <footer className="mt-24 bg-brand-950 text-brand-100">
       <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-5">
         <div className="lg:col-span-2">
-          <Link href="/" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white">
               <Leaf size={18} />
             </span>
@@ -41,7 +41,7 @@ export function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm text-brand-200">
             {categories.map((c) => (
               <li key={c.slug}>
-                <Link href={`/shop?category=${c.slug}`} className="hover:text-white">
+                <Link to="/shop" search={{ category: c.slug }} className="hover:text-white">
                   {c.name}
                 </Link>
               </li>
@@ -53,22 +53,22 @@ export function Footer() {
           <h3 className="text-sm font-medium text-white">Company</h3>
           <ul className="mt-4 space-y-2.5 text-sm text-brand-200">
             <li>
-              <Link href="/about" className="hover:text-white">
+              <Link to="/about" className="hover:text-white">
                 About Zachs
               </Link>
             </li>
             <li>
-              <Link href="/care-guides" className="hover:text-white">
+              <Link to="/care-guides" className="hover:text-white">
                 Care Guides
               </Link>
             </li>
             <li>
-              <Link href="/contact" className="hover:text-white">
+              <Link to="/contact" className="hover:text-white">
                 Contact
               </Link>
             </li>
             <li>
-              <Link href="/shop" className="hover:text-white">
+              <Link to="/shop" className="hover:text-white">
                 Delivery &amp; Returns
               </Link>
             </li>

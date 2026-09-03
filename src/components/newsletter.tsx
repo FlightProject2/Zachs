@@ -1,6 +1,5 @@
-"use client";
-
-import { useState, type FormEvent } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react";
 
 export function Newsletter({ dark = false }: { dark?: boolean }) {
   const [submitted, setSubmitted] = useState(false);

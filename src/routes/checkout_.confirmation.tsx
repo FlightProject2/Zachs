@@ -1,22 +1,25 @@
-import Link from "next/link";
-import type { Metadata } from "next";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { CheckCircle2 } from "lucide-react";
 import { formatPrice } from "@/lib/format";
 
-export const metadata: Metadata = {
-  title: "Order Confirmed",
-};
-
-interface ConfirmationPageProps {
-  searchParams: Promise<{ order?: string; total?: string }>;
+interface ConfirmationSearch {
+  order?: string;
+  total?: string;
 }
 
-export default async function ConfirmationPage({
-  searchParams,
-}: ConfirmationPageProps) {
-  const params = await searchParams;
-  const orderNumber = params.order ?? "ZC-000000";
-  const total = params.total ? Number(params.total) : 0;
+export const Route = createFileRoute("/checkout_/confirmation")({
+  validateSearch: (search: Record<string, unknown>): ConfirmationSearch => ({
+    order: typeof search.order === "string" ? search.order : undefined,
+    total: typeof search.total === "string" ? search.total : undefined,
+  }),
+  head: () => ({ meta: [{ title: "Order Confirmed | Zachs" }] }),
+  component: ConfirmationPage,
+});
+
+function ConfirmationPage() {
+  const { order, total } = Route.useSearch();
+  const orderNumber = order ?? "ZC-000000";
+  const totalAmount = total ? Number(total) : 0;
 
   return (
     <div className="container-page flex flex-col items-center py-20 text-center">
@@ -30,20 +33,20 @@ export default async function ConfirmationPage({
         Your order <span className="font-medium text-foreground">{orderNumber}</span> has
         been placed. We&apos;ve sent a confirmation email with your delivery details.
       </p>
-      {total > 0 && (
+      {totalAmount > 0 && (
         <p className="mt-2 text-sm text-muted">
-          Order total: <span className="font-medium text-foreground">{formatPrice(total)}</span>
+          Order total: <span className="font-medium text-foreground">{formatPrice(totalAmount)}</span>
         </p>
       )}
       <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
         <Link
-          href="/shop"
+          to="/shop"
           className="rounded-full bg-brand-900 px-6 py-3 text-sm font-medium text-white hover:bg-brand-800"
         >
           Continue shopping
         </Link>
         <Link
-          href="/"
+          to="/"
           className="rounded-full border border-line px-6 py-3 text-sm text-foreground hover:border-brand-400"
         >
           Back to home

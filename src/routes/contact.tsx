@@ -1,11 +1,16 @@
-import type { Metadata } from "next";
+import { createFileRoute } from "@tanstack/react-router";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 
-export const metadata: Metadata = {
-  title: "Contact Us",
-  description: "Get in touch with the Zachs plant nursery team.",
-};
+export const Route = createFileRoute("/contact")({
+  head: () => ({
+    meta: [
+      { title: "Contact Us | Zachs" },
+      { name: "description", content: "Get in touch with the Zachs plant nursery team." },
+    ],
+  }),
+  component: ContactPage,
+});
 
 const DETAILS = [
   { icon: Mail, label: "Email", value: "hello@zachs.co.uk" },
@@ -14,7 +19,7 @@ const DETAILS = [
   { icon: Clock, label: "Hours", value: "Mon–Sat, 9am–5pm" },
 ];
 
-export default function ContactPage() {
+function ContactPage() {
   return (
     <div className="container-page py-14">
       <div className="grid gap-12 lg:grid-cols-2">

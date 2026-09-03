@@ -1,15 +1,31 @@
-import { Suspense } from "react";
-import type { Metadata } from "next";
+import { createFileRoute } from "@tanstack/react-router";
 import { ShopFilters } from "@/components/shop/shop-filters";
 import { ProductCard } from "@/components/product-card";
 import { products } from "@/data/products";
 import { getCategory } from "@/data/categories";
 
-export const metadata: Metadata = {
-  title: "Shop All Plants",
-  description:
-    "Browse houseplants, outdoor plants, succulents, pots and plant care essentials from Zachs nursery.",
-};
+interface ShopSearch {
+  category?: string;
+  sort?: string;
+}
+
+export const Route = createFileRoute("/shop")({
+  validateSearch: (search: Record<string, unknown>): ShopSearch => ({
+    category: typeof search.category === "string" ? search.category : undefined,
+    sort: typeof search.sort === "string" ? search.sort : undefined,
+  }),
+  head: () => ({
+    meta: [
+      { title: "Shop All Plants | Zachs" },
+      {
+        name: "description",
+        content:
+          "Browse houseplants, outdoor plants, succulents, pots and plant care essentials from Zachs nursery.",
+      },
+    ],
+  }),
+  component: ShopPage,
+});
 
 function sortProducts(list: typeof products, sort: string) {
   const copy = [...list];
@@ -25,38 +41,32 @@ function sortProducts(list: typeof products, sort: string) {
   }
 }
 
-interface ShopPageProps {
-  searchParams: Promise<{ category?: string; sort?: string }>;
-}
-
-export default async function ShopPage({ searchParams }: ShopPageProps) {
-  const params = await searchParams;
-  const activeCategory = params.category ?? "all";
-  const activeSort = params.sort ?? "featured";
+function ShopPage() {
+  const { category, sort } = Route.useSearch();
+  const activeCategory = category ?? "all";
+  const activeSort = sort ?? "featured";
 
   const filtered =
     activeCategory === "all"
       ? products
       : products.filter((p) => p.category === activeCategory);
   const sorted = sortProducts(filtered, activeSort);
-  const category = activeCategory !== "all" ? getCategory(activeCategory) : undefined;
+  const activeCategoryData = activeCategory !== "all" ? getCategory(activeCategory) : undefined;
 
   return (
     <div className="container-page py-10">
       <div className="mb-8">
         <h1 className="font-display text-3xl text-brand-950">
-          {category ? category.name : "Shop All Plants"}
+          {activeCategoryData ? activeCategoryData.name : "Shop All Plants"}
         </h1>
         <p className="mt-2 max-w-xl text-sm text-muted">
-          {category
-            ? category.description
+          {activeCategoryData
+            ? activeCategoryData.description
             : "Every plant, pot and plant-care essential we stock, hand-picked and ready to ship."}
         </p>
       </div>
 
-      <Suspense>
-        <ShopFilters activeCategory={activeCategory} activeSort={activeSort} />
-      </Suspense>
+      <ShopFilters activeCategory={activeCategory} activeSort={activeSort} />
 
       {sorted.length === 0 ? (
         <p className="mt-16 text-center text-muted">

@@ -1,12 +1,15 @@
-"use client";
-
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
+import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+import type { FormEvent } from "react";
 import { Lock, ShoppingBasket } from "lucide-react";
 import { useCart } from "@/context/cart-context";
 import { PlantArt } from "@/components/plant-art";
 import { formatPrice } from "@/lib/format";
+
+export const Route = createFileRoute("/checkout")({
+  head: () => ({ meta: [{ title: "Checkout | Zachs" }] }),
+  component: CheckoutPage,
+});
 
 const FREE_DELIVERY_THRESHOLD = 45;
 const DELIVERY_FEE = 4.95;
@@ -15,8 +18,8 @@ function generateOrderNumber() {
   return `ZC-${Math.floor(100000 + Math.random() * 900000)}`;
 }
 
-export default function CheckoutPage() {
-  const router = useRouter();
+function CheckoutPage() {
+  const navigate = useNavigate();
   const { items, subtotal, clearCart } = useCart();
   const [submitting, setSubmitting] = useState(false);
 
@@ -29,7 +32,7 @@ export default function CheckoutPage() {
           Add some plants to your basket before checking out.
         </p>
         <Link
-          href="/shop"
+          to="/shop"
           className="mt-2 rounded-full bg-brand-900 px-6 py-3 text-sm font-medium text-white hover:bg-brand-800"
         >
           Shop plants
@@ -47,9 +50,10 @@ export default function CheckoutPage() {
     const orderNumber = generateOrderNumber();
     window.setTimeout(() => {
       clearCart();
-      router.push(
-        `/checkout/confirmation?order=${orderNumber}&total=${total.toFixed(2)}`
-      );
+      navigate({
+        to: "/checkout/confirmation",
+        search: { order: orderNumber, total: total.toFixed(2) },
+      });
     }, 700);
   }
 

@@ -1,3 +1,4 @@
+import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/hero";
 import { UspBar } from "@/components/usp-bar";
 import { SectionHeading } from "@/components/section-heading";
@@ -7,6 +8,8 @@ import { Newsletter } from "@/components/newsletter";
 import { categories } from "@/data/categories";
 import { getBestsellers, getNewArrivals } from "@/data/products";
 import { StarRating } from "@/components/star-rating";
+
+export const Route = createFileRoute("/")({ component: Home });
 
 const TESTIMONIALS = [
   {
@@ -29,7 +32,7 @@ const TESTIMONIALS = [
   },
 ];
 
-export default function Home() {
+function Home() {
   const bestsellers = getBestsellers(8);
   const newArrivals = getNewArrivals(4);
 

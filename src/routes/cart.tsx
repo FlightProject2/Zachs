@@ -1,16 +1,19 @@
-"use client";
-
-import Link from "next/link";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { ShoppingBasket, Trash2 } from "lucide-react";
 import { useCart } from "@/context/cart-context";
 import { PlantArt } from "@/components/plant-art";
 import { QuantityStepper } from "@/components/quantity-stepper";
 import { formatPrice } from "@/lib/format";
 
+export const Route = createFileRoute("/cart")({
+  head: () => ({ meta: [{ title: "Your Basket | Zachs" }] }),
+  component: CartPage,
+});
+
 const FREE_DELIVERY_THRESHOLD = 45;
 const DELIVERY_FEE = 4.95;
 
-export default function CartPage() {
+function CartPage() {
   const { items, subtotal, updateQuantity, removeItem, clearCart } = useCart();
 
   if (items.length === 0) {
@@ -22,7 +25,7 @@ export default function CartPage() {
           Looks like you haven&apos;t added any plants yet. Let&apos;s fix that.
         </p>
         <Link
-          href="/shop"
+          to="/shop"
           className="mt-2 rounded-full bg-brand-900 px-6 py-3 text-sm font-medium text-white hover:bg-brand-800"
         >
           Shop plants
@@ -53,7 +56,7 @@ export default function CartPage() {
                 key={`${item.slug}__${item.size ?? ""}`}
                 className="flex gap-4 border-b border-line py-6 first:pt-0"
               >
-                <Link href={`/product/${item.slug}`} className="shrink-0">
+                <Link to="/product/$slug" params={{ slug: item.slug }} className="shrink-0">
                   <PlantArt
                     icon={item.art.icon}
                     from={item.art.from}
@@ -66,7 +69,8 @@ export default function CartPage() {
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <Link
-                        href={`/product/${item.slug}`}
+                        to="/product/$slug"
+                        params={{ slug: item.slug }}
                         className="font-display text-lg text-foreground hover:text-brand-700"
                       >
                         {item.name}
@@ -127,13 +131,13 @@ export default function CartPage() {
             </div>
           </div>
           <Link
-            href="/checkout"
+            to="/checkout"
             className="mt-6 flex w-full items-center justify-center rounded-full bg-brand-900 px-6 py-3.5 text-sm font-medium text-white hover:bg-brand-800"
           >
             Proceed to Checkout
           </Link>
           <Link
-            href="/shop"
+            to="/shop"
             className="mt-3 flex w-full items-center justify-center rounded-full px-6 py-2.5 text-sm text-brand-800 hover:underline"
           >
             Continue shopping

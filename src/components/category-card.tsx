@@ -1,11 +1,12 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import type { Category } from "@/data/categories";
 import { PlantArt } from "@/components/plant-art";
 
 export function CategoryCard({ category }: { category: Category }) {
   return (
     <Link
-      href={`/shop?category=${category.slug}`}
+      to="/shop"
+      search={{ category: category.slug }}
       className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-shadow hover:shadow-md"
     >
       <PlantArt

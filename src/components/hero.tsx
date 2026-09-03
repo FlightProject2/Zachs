@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { PlantArt } from "@/components/plant-art";
 
@@ -20,14 +20,15 @@ export function Hero() {
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link
-              href="/shop"
+              to="/shop"
               className="inline-flex items-center gap-2 rounded-full bg-brand-900 px-7 py-3.5 text-sm font-medium text-white transition-colors hover:bg-brand-800"
             >
               Shop all plants
               <ArrowRight size={16} />
             </Link>
             <Link
-              href="/shop?category=houseplants"
+              to="/shop"
+              search={{ category: "houseplants" }}
               className="inline-flex items-center gap-2 rounded-full border border-line px-7 py-3.5 text-sm font-medium text-foreground transition-colors hover:border-brand-400 hover:text-brand-700"
             >
               Best for beginners
